@@ -69,6 +69,332 @@
             display: flex; align-items: center; gap: 40px; margin-bottom: 50px;
             padding: 30px; border-radius: 10px; background-color: var(--secondary-blue);
             border: 1px solid var(--border-color); 
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); 
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .news-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 132, 255, 0.15); }
+        .news-item:nth-child(even) { flex-direction: row-reverse; background-color: var(--primary-blue); }
+        .news-item-image { flex: 1; min-width: 280px; max-width: 40%; }
+        .news-item-image img { 
+            width: 100%; height: auto; border-radius: 8px; 
+            object-fit: cover; border: 3px solid var(--highlight-blue); 
+            box-shadow: 0 0 15px rgba(0, 132, 255, 0.3);
+        }
+        .news-item-content { flex: 2; }
+        .news-item-content h3 { margin-top: 0; font-size: 1.8em; color: var(--text-light); }
+        .news-item-content p { color: var(--text-dark); }
+        
+        .btn-action {
+            display: inline-block; background-color: var(--highlight-blue); color: var(--text-light);
+            padding: 10px 25px; text-decoration: none; border-radius: 50px; 
+            margin-top: 20px; font-weight: 700; 
+            box-shadow: 0 4px 10px rgba(0, 132, 255, 0.4);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-action:hover { background-color: #0069d9; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 132, 255, 0.6); }
+
+        /* ---------------------------------- */
+        /* 4. SEÇÃO DO JORNAL (Imagens) */
+        /* ---------------------------------- */
+        .journal-section { text-align: center; }
+        .journal-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+            max-width: 1200px; 
+            margin: 40px auto; 
+        }
+        .journal-page {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        .journal-page:hover {
+            transform: scale(1.02);
+        }
+        .journal-grid img { 
+            width: 100%; 
+            height: auto; 
+            display: block;
+            border: 1px solid var(--border-color);
+        }
+        .journal-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--text-light);
+            padding: 10px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        /* ---------------------------------- */
+        /* 5. ESPAÇO INTERATIVO (Caça-Palavras e Sudoku) */
+        /* ---------------------------------- */
+        .games-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
+        .game-box {
+            background: var(--primary-blue); padding: 30px; border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            width: 100%; max-width: 550px; border: 1px solid var(--border-color); 
+            text-align: left;
+        }
+        .game-box h3 { text-align: center; margin-bottom: 25px; color: var(--highlight-blue); border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+
+        /* Caça-Palavras Específico (Estilização da Grade) */
+        .word-search-grid {
+            display: grid; 
+            grid-template-columns: repeat(18, 25px); 
+            grid-template-rows: repeat(12, 25px);
+            gap: 1px; 
+            border: 2px solid var(--highlight-blue); 
+            margin: 20px auto; 
+            max-width: fit-content;
+            background-color: var(--border-color);
+        }
+        .word-search-cell {
+            width: 25px; height: 25px; display: flex; justify-content: center; align-items: center;
+            font-size: 0.8em; font-weight: 700; text-transform: uppercase; cursor: pointer;
+            background-color: var(--secondary-blue); color: var(--text-light); 
+            border: none;
+            transition: background-color 0.1s; user-select: none;
+        }
+        .word-search-cell.selected { background-color: var(--highlight-blue); color: #FFF; } 
+        .word-search-cell.found { background-color: #28a745; color: #FFF; font-weight: 700; } 
+        .word-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 5px 20px; margin-top: 15px; font-size: 1em; color: var(--text-dark); }
+        .word-list li { font-weight: 600; }
+        .word-list li.found { text-decoration: line-through; color: #6c757d; }
+
+        /* Sudoku Específico */
+        .sudoku-grid {
+            display: grid; grid-template-columns: repeat(9, 35px); grid-template-rows: repeat(9, 35px);
+            gap: 0; border: 3px solid var(--highlight-blue); margin: 20px auto; max-width: fit-content;
+        }
+        .sudoku-cell { width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; font-size: 1.1em; font-weight: 700; border: 1px solid var(--border-color); }
+        .sudoku-cell input { 
+            width: 100%; height: 100%; text-align: center; font-size: 1.1em; font-weight: 700; 
+            border: none; background-color: var(--secondary-blue); color: var(--text-light); 
+            outline: none;
+        }
+        .sudoku-cell.fixed { background-color: var(--primary-blue); color: var(--text-light); pointer-events: none; }
+        .sudoku-grid .cell-border-right { border-right: 3px solid var(--highlight-blue) !important; }
+        .sudoku-grid .cell-border-bottom { border-bottom: 3px solid var(--highlight-blue) !important; }
+        .sudoku-buttons { text-align: center; margin-top: 25px; }
+        .btn-solve { background-color: #dc3545; border-color: #dc3545; }
+        .btn-solve:hover { background-color: #c82333; }
+
+        /* ---------------------------------- */
+        /* 6. RODAPÉ e RESPONSIVO */
+        /* ---------------------------------- */
+        .main-footer { 
+            background-color: var(--primary-blue); color: var(--text-dark); 
+            padding: 30px 5%; text-align: center; margin-top: 0; 
+            border-top: 2px solid var(--border-color); 
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .main-header { flex-direction: column; position: static; padding-bottom: 10px; }
+            main { padding-top: 0; }
+            .section-title { font-size: 1.8em; margin-bottom: 30px; }
+            .news-item, .news-item:nth-child(even) { flex-direction: column; gap: 20px; align-items: center; text-align: center; padding: 20px; }
+            .news-item-image { max-width: 100%; min-width: auto; }
+            .journal-grid { grid-template-columns: 1fr; }
+            
+            /* Ajuste de tamanho para jogos em telas menores */
+            .word-search-grid { grid-template-columns: repeat(18, 18px); grid-template-rows: repeat(12, 18px); }
+            .word-search-cell { width: 18px; height: 18px; font-size: 0.7em; }
+            .sudoku-grid { grid-template-columns: repeat(9, 30px); grid-template-rows: repeat(9, 30px); }
+            .sudoku-cell { width: 30px; height: 30px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="https://files.catbox.moe/39ztvw.jpg" alt="CDL Aprendiz em Foco Logo" class="logo">
+            <h1>APRENDIZ EM FOCO</h1>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#noticias"><i class="fas fa-bullhorn"></i> Notícias</a></li>
+                <li><a href="#aprende-jovem"><i class="fas fa-gamepad"></i> Jogos</a></li>
+                <li><a href="#jornal"><i class="fas fa-newspaper"></i> Jornal Completo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="noticias" class="news-section">
+            <h2 class="section-title"><i class="fas fa-star"></i> Destaques e Iniciativas CDL</h2>
+            
+            <article class="news-item">
+                <div class="news-item-image">
+                    <img src="https://files.catbox.moe/0fuurz.jpg" alt="Aprendizes em Palestra sobre Legado Negro">
+                </div>
+                <div class="news-item-content">
+                    <span style="color: var(--highlight-blue); font-size: 0.9em; font-weight: 600;"><i class="fas fa-calendar-alt"></i> EVENTO | 20 NOV, 2025</span>
+                    <h3>Jovens Aprendizes e o Legado da Consciência Negra</h3>
+                    <p>Nossos jovens aprendizes participaram de uma inspiradora palestra sobre a importância da Consciência Negra e o legado de figuras históricas como Luís Gama, promovendo a inclusão e o conhecimento na nossa comunidade.</p>
+                    </div>
+            </article>
+
+            <article class="news-item">
+                <div class="news-item-content">
+                    <span style="color: var(--highlight-blue); font-size: 0.9em; font-weight: 600;"><i class="fas fa-laptop-code"></i> PROGRAMA | TECNOLOGIA</span>
+                    <h3>CDL Capacita: Mulheres no TI</h3>
+                    <p>O programa exclusivo "Mulheres no TI" da CDL oferece capacitação intensiva para aprendizes, preparando-as para as demandas do mercado de tecnologia e garantindo alta empregabilidade no setor.</p>
+                    </div>
+                <div class="news-item-image">
+                    <img src="https://files.catbox.moe/e9t6a1.jpg" alt="Grupo de jovens mulheres aprendizes em aula de TI">
+                </div>
+            </article>
+        </section>
+
+        <section id="aprende-jovem" class="interactive-section">
+            <h2 class="section-title"><i class="fas fa-brain"></i> Espaço Interativo: Aprenda Jovem</h2>
+            
+            <div class="games-container">
+                <div class="game-box">
+                    <h3>Caça Palavras</h3>
+                    <p style="margin-bottom: 15px; color: var(--text-dark);">**Como jogar:** Clique na **primeira** letra e depois na **última** letra da palavra para marcá-la em verde.</p>
+                    <div class="word-search-grid" id="wordSearchGrid"></div>
+                    <h4 style="margin-top: 20px; color: var(--text-light); font-weight: 600;">Palavras a encontrar:</h4>
+                    <ul class="word-list" id="wordList"></ul>
+                    <div class="word-search-buttons" style="text-align: center;">
+                        <button class="btn-action" onclick="resetWordSearch()"><i class="fas fa-redo-alt"></i> Reiniciar</button>
+                    </div>
+                </div>
+
+                <div class="game-box">
+                    <h3>Sudoku</h3>
+                    <p style="margin-bottom: 15px; color: var(--text-dark);">**Regras:** Preencha de 1 a 9 sem repetir na linha, coluna ou bloco 3x3.</p>
+                    <div class="sudoku-grid" id="sudokuGrid"></div>
+                    <div class="sudoku-buttons">
+                        <button class="btn-action" onclick="checkSudoku()"><i class="fas fa-check-square"></i> Verificar</button>
+                        <button class="btn-action btn-solve" onclick="solveSudoku()"><i class="fas fa-lightbulb"></i> Resolver</button>
+                        <button class="btn-action" onclick="resetSudoku()"><i class="fas fa-redo-alt"></i> Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jornal" class="journal-section">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Edição Completa do Jornal</h2>
+            <p style="color: var(--text-dark); margin-bottom: 30px;">Confira as páginas originais da nossa última edição do "Aprendiz em Foco".</p>
+            
+            <div class="journal-grid">
+                <div class="journal-page">
+                    <img src="https://files.catbox.moe/yylpix.jpg" alt="Página 1 do Jornal CDL Aprendiz em Foco">
+                    <div class="journal-title">PÁGINA 1: DESTAQUES</div>
+                </div>
+                <div class="journal-page">
+                    <img src="https://files.catbox.moe/jacct5.jpg" alt="Página 2 do Jornal CDL Aprendiz em Foco (Jogos)">
+                    <div class="journal-title">PÁGINA 2: INTERATIVIDADE</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p><i class="fas fa-copyright"></i> 2025 CDL Aprendiz em Foco. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ESSENCIAL: Cria as grades assim que a página é carregada
+            createWordSearchGrid();
+            createSudokuGrid();
+        });
+
+
+        // --- LÓGICA DO CAÇA-PALAVRAS (2-CLIQUES) ---
+        const wordSearchGridElement = document.getElementById('wordSearchGrid');
+        const wordListElement = document.getElementById('wordList');
+        // A palavra "INCLUSÃO" está na lista, mas sem acento na grade
+        const wordsToFind = ['VULNERABILIDADE', 'PROJETO', 'JOVEM', 'NATAL', 'INCLUSÃO', 'HABILIDADES', 'TECNOLOGIA', 'PALESTRA'];
+        let foundWords = [];
+        let firstClick = null; 
+
+        // Dados da Grade (extraído da imagem do jornal)
+        const gridData = [
+            ['E', 'M', 'P', 'R', 'E', 'G', 'A', 'B', 'I', 'L', 'I', 'D', 'A', 'D', 'E', 'R', 'A', 'D'],
+            ['H', 'V', 'P', 'J', 'O', 'V', 'E', 'M', 'A', 'S', 'C', 'L', 'C', 'B', 'S', 'P', 'S', 'E'],
+            ['A', 'U', 'A', 'T', 'E', 'C', 'N', 'O', 'L', 'O', 'G', 'I', 'A', 'I', 'R', 'A', 'I', 'S'],
+            ['B', 'L', 'L', 'C', 'O', 'R', 'E', 'M', 'R', 'U', 'N', 'X', 'M', 'B', 'E', 'L', 'S', 'M'],
+            ['I', 'N', 'E', 'S', 'I', 'N', 'C', 'L', 'U', 'S', 'A', 'O', 'K', 'L', 'H', 'E', 'A', 'E'],
+            ['L', 'E', 'S', 'T', 'R', 'T', 'A', 'R', 'T', 'O', 'B', 'L', 'B', 'O', 'L', 'S', 'N', 'D'],
+            ['I', 'R', 'T', 'R', 'O', 'A', 'P', 'T', 'E', 'M', 'I', 'E', 'I', 'T', 'U', 'T', 'T', 'U'],
+            ['D', 'A', 'R', 'U', 'J', 'N', 'R', 'H', 'A', 'E', 'B', 'T', 'O', 'E', 'M', 'R', 'A', 'A'],
+            ['A', 'V', 'A', 'E', 'P', 'O', 'Z', 'M', 'L', 'L', 'L', 'D', 'T', 'C', 'H', 'A', 'L', 'S'],
+            ['D', 'E', 'S', 'M', 'O', 'N', 'C', 'A', 'N', 'K', 'E', 'D', 'E', 'E', 'I', 'T', 'I', 'M'],
+            ['E', 'L', 'T', 'E', 'C', 'A', 'I', 'F', 'U', 'W', 'N', 'N', 'C', 'N', 'A', 'R', 'S', 'D'],
+            ['S', 'A', 'R', 'R', 'O', 'A', 'G', 'L', 'D', 'N', 'O', 'R', 'A', 'I', 'S', 'E', 'S', 'E']
+        ];
+        
+        function getCellByCoords(r, c) {
+            return wordSearchGridElement.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+        }
+
+        function createWordSearchGrid() {
+            wordSearchGridElement.innerHTML = '';
+            gridData.forEach((row, rowIndex) => {
+                row.forEach((char, colIndex) => {
+                    const cell = document.createElement('div');
+                    cell.classList.add('word-search-cell');
+                    cell.textContent = char;
+                    cell.dataset.row = rowIndex;
+                    cell.dataset.col = colIndex;
+                    cell.addEventListener('click', handleCellClick);
+                    wordSearchGridElement.appendChild(cell);
+                });
+            });
+            updateWordList();
+        }
+        
+        function clearSelectionVisual() {
+            wordSearchGridElement.querySelectorAll('.word-search-cell.selected').forEach(cell => cell.classList.remove('selected'));
+        }
+
+        function getCellsInLine(r1, c1, r2, c2) {
+            let cells = [];
+            const dr = Math.sign(r2 - r1);
+            const dc = Math.sign(c2 - c1);
+            
+            const isHorizontal = dr === 0 && dc !== 0;
+            const isVertical = dr !== 0 && dc === 0;
+            const isDiagonal = Math.abs(r2 - r1) === Math.abs(c2 - c1) && dr !== 0 && dc !== 0;
+
+            if (!isHorizontal && !isVertical && !isDiagonal) {
+                return []; 
+            }
+
+            let r = r1;
+            let c = c1;
+
+            while (true) {
+                const cell = getCellByCoords(r, c);
+                if (!cell) break;
+                cells.push(cell);
+                
+                if (r === r2 && c === c2) break;
+
+                r += dr;
+                c += dc;
+                        color: var(--highlight-blue);
+        }
+        .news-section, .journal-section, .interactive-section { padding: 60px 5%; }
+        .journal-section, .interactive-section { background-color: var(--primary-blue); }
+
+        /* --- Estilo dos Cartões de Notícia --- */
+        .news-item {
+            display: flex; align-items: center; gap: 40px; margin-bottom: 50px;
+            padding: 30px; border-radius: 10px; background-color: var(--secondary-blue);
+            border: 1px solid var(--border-color); 
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Sombra mais destacada */
             transition: transform 0.3s, box-shadow 0.3s;
         }
